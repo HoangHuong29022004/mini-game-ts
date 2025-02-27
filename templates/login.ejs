@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+    <style>
+        body{
+          background-image: url(https://4.bp.blogspot.com/-clfUKsuwBVw/WdX2h9fDt1I/AAAAAAAAAOU/ruFgE0zvv8oH54HRHVvMqloUK0ao5Ip5wCLcBGAs/s1600/game-pikachu-c%25E1%25BB%2595-%25C4%2591i%25E1%25BB%2583n.png);
+          .nut{
+            text-align: center;
+          }
+        }
+        
+        
+      </style>
+    
+
+<head>
+    <%- include('partials/head.ejs') %>
+</head>
+
+<body>
+    <main class="container">
+        <header class="row">
+            <%- include('partials/header.ejs') %>
+        </header>
+        <section class="row" id="app">
+            <div class="col-6 offset-3 mt-3">
+                <form action="board">
+                    <div class="form-group">
+                        <label for="username">Tên Người Chơi</label>
+                        <input type="text" class="form-control" name="username" id="username"
+                            aria-describedby="UsernameHelpId" placeholder="Tên Người Chơi">
+                        <small id="UsernameHelpId" class="form-text text-muted invisible">⚠ Tên người dùng không được
+                            trống hoặc ít nhất 3 ký tự</small>
+                    </div>
+                    <div class="form-group">
+                        <hr>
+                        <button type="button" id="play" class="btn btn-primary">Chơi Ngay</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <footer class="row">
+            <%- include('partials/footer.ejs') %>
+        </footer>
+    </main>
+    <script type="module" src="assets/user.bundle.js"></script>
+    <script type="module" src="assets/vendors~user.chunk.js"></script>
+    <%- include('partials/foot.ejs') %>
+</body>
+
+</html>

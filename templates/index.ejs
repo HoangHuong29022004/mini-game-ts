@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <style>
+    body{
+      background-image: url(https://th.bing.com/th/id/R.92c3c1e84c49f0ae8edb58da3311fdc3?rik=daL31zuCl1n82g&riu=http%3a%2f%2fsimplywallpaper.net%2fpictures%2f2014%2f03%2fBia-Rio-2-Movie-Wallpaper.jpg&ehk=WPwu%2fc94zemSqcGqZIxmFmE7%2fLKy5wMZO6MHcOaNEaU%3d&risl=&pid=ImgRaw&r=0);
+      
+    }
+    
+    
+  </style>
+
+<head>
+  <%- include('partials/head.ejs') %>
+  
+</head>
+
+<body>
+  <main class="container">
+    <header class="row">
+      <%- include('partials/header.ejs') %>
+    </header>
+    <hr>
+    <div id="time"></div>
+    <div id="app">
+      <section class="row" id="board">
+
+      </section>
+      <section class="row">
+        <div class="col" id="reset">
+          <hr>
+          <button id="reset" class="btn btn-primary">Reset Game</button>
+          <button id="cancel" class="btn btn-danger">Cancel Game</button>
+        </div>
+      </section>
+    </div>
+    <footer class="row">
+      <%- include('partials/footer.ejs') %>
+    </footer>
+  </main>
+  <script type="module" src="assets/main.bundle.js"></script>
+  <script type="module" src="assets/vendor~main.chunk.js"></script>
+  <script>
+    const cancelButton = document.getElementById("cancel");
+
+    cancelButton.addEventListener("click", function () {
+      window.location.href = "/login";
+    });
+
+  </script>
+  <%- include('partials/foot.ejs') %>
+</body>
+
+</html>
