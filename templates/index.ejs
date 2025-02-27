@@ -1,53 +1,60 @@
-<!doctype html>
-<html lang="en">
-  <style>
-    body{
-      background-image: url(https://th.bing.com/th/id/R.92c3c1e84c49f0ae8edb58da3311fdc3?rik=daL31zuCl1n82g&riu=http%3a%2f%2fsimplywallpaper.net%2fpictures%2f2014%2f03%2fBia-Rio-2-Movie-Wallpaper.jpg&ehk=WPwu%2fc94zemSqcGqZIxmFmE7%2fLKy5wMZO6MHcOaNEaU%3d&risl=&pid=ImgRaw&r=0);
-      
-    }
-    
-    
-  </style>
-
+<!DOCTYPE html>
+<html lang="vi">
 <head>
-  <%- include('partials/head.ejs') %>
-  
+    <%- include('partials/head') %>
 </head>
-
 <body>
-  <main class="container">
-    <header class="row">
-      <%- include('partials/header.ejs') %>
-    </header>
-    <hr>
-    <div id="time"></div>
-    <div id="app">
-      <section class="row" id="board">
+    <main class="container">
+        <div class="game-container">
+            <%- include('partials/header') %>
+            
+            <div id="app">
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Điểm Số</h5>
+                                <p class="display-6" id="score">0</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Thời Gian</h5>
+                                <p class="display-6" id="timer">120</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Người Chơi</h5>
+                                <p class="display-6" id="playerName">-</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-      </section>
-      <section class="row">
-        <div class="col" id="reset">
-          <hr>
-          <button id="reset" class="btn btn-primary">Reset Game</button>
-          <button id="cancel" class="btn btn-danger">Cancel Game</button>
+                <section class="row" id="board">
+                    <!-- Game board will be dynamically populated -->
+                </section>
+
+                <section class="row mt-4">
+                    <div class="col text-center">
+                        <button class="btn btn-primary btn-lg btn-game" id="resetBtn">
+                            Chơi Lại
+                        </button>
+                        <button class="btn btn-danger btn-lg btn-game" id="cancelBtn">
+                            Thoát Game
+                        </button>
+                    </div>
+                </section>
+            </div>
+
+            <%- include('partials/footer') %>
         </div>
-      </section>
-    </div>
-    <footer class="row">
-      <%- include('partials/footer.ejs') %>
-    </footer>
-  </main>
-  <script type="module" src="assets/main.bundle.js"></script>
-  <script type="module" src="assets/vendor~main.chunk.js"></script>
-  <script>
-    const cancelButton = document.getElementById("cancel");
-
-    cancelButton.addEventListener("click", function () {
-      window.location.href = "/login";
-    });
-
-  </script>
-  <%- include('partials/foot.ejs') %>
+    </main>
+    <%- include('partials/foot') %>
 </body>
-
 </html>

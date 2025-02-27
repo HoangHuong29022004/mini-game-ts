@@ -1,5 +1,7 @@
+const path = require('path');
+
 module.exports = {
-    mode: "development",
+    mode: "production",
 
     entry: {
         main: "./src/frontend/App.ts",
@@ -8,8 +10,8 @@ module.exports = {
 
     output:{
         filename: "[name].bundle.js",
-        chunkFilename: '[name].chunk.js',
-        path: __dirname + "/dist/frontend",
+        chunkFilename: '[id].bundle.js',
+        path: path.resolve(__dirname, "dist/frontend"),
         publicPath: "/assets/"
     },
 
@@ -23,27 +25,37 @@ module.exports = {
         rules: [
             {
                 test: /\.tsx?$/,
-                loader: "ts-loader"
-            },
-            {
-                enforce: "pre",
-                test: /\.js$/,
-                loader: "source-map-loader"
+                use: "ts-loader",
+                exclude: /node_modules/
             },
             {
                 test: /\.css$/,
-                use: [{
-                    loader: "style-loader"
-                },{
-                    loader: "css-loader"
-                }]
-            }]
+                use: ["style-loader", "css-loader"]
+            }
+        ]
     },
     optimization: {
         splitChunks: {
-            chunks: "all"
-        },
-        usedExports: true
+            chunks: 'all',
+            minSize: 20000,
+            minRemainingSize: 0,
+            minChunks: 1,
+            maxAsyncRequests: 30,
+            maxInitialRequests: 30,
+            enforceSizeThreshold: 50000,
+            cacheGroups: {
+                defaultVendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    priority: -10,
+                    reuseExistingChunk: true
+                },
+                default: {
+                    minChunks: 2,
+                    priority: -20,
+                    reuseExistingChunk: true
+                }
+            }
+        }
     }
 
 }

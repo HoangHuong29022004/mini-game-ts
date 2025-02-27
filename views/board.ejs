@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Memory Game</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+        .game-container {
+            width: 100%;
+            max-width: 1000px;
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            padding: 15px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 15px;
+        }
+        .game-info {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            border-radius: 12px;
+            padding: 15px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .stat-item {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px;
+            border-radius: 8px;
+        }
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            margin: 0;
+        }
+        .stat-label {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+            margin: 5px 0 0;
+        }
+        .game-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: auto;
+        }
+        .btn-game {
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 14px;
+            width: 100%;
+        }
+        .btn-reset {
+            background-color: #10b981;
+            color: white;
+        }
+        .btn-reset:hover {
+            background-color: #059669;
+            transform: translateY(-2px);
+        }
+        .btn-cancel {
+            background-color: #ef4444;
+            color: white;
+        }
+        .btn-cancel:hover {
+            background-color: #dc2626;
+            transform: translateY(-2px);
+        }
+        .game-main {
+            display: flex;
+            flex-direction: column;
+        }
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            height: 100%;
+        }
+        .gameItem {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #f0f2f5 0%, #e5e7eb 100%);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid #e5e7eb;
+            overflow: hidden;
+        }
+        .gameItem:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-color: #6366f1;
+        }
+        .gameItem.flipped {
+            background: white;
+            border-color: #6366f1;
+        }
+        .gameItem.matched {
+            background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+            border-color: #10b981;
+        }
+        .gameItem img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 8px;
+        }
+        .player-info {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .player-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: white;
+            margin: 0;
+        }
+        .player-label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 5px 0 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-info">
+            <div class="player-info">
+                <h2 class="player-name" id="playerName">-</h2>
+                <div class="player-label">Người chơi</div>
+            </div>
+            
+            <div class="stat-item">
+                <div class="stat-value" id="score">0</div>
+                <div class="stat-label">Điểm số</div>
+            </div>
+            
+            <div class="stat-item">
+                <div class="stat-value" id="timer">120</div>
+                <div class="stat-label">Thời gian</div>
+            </div>
+
+            <div class="game-controls">
+                <button class="btn btn-game btn-reset" id="resetBtn">Chơi lại</button>
+                <button class="btn btn-game btn-cancel" id="cancelBtn">Thoát</button>
+            </div>
+        </div>
+        
+        <div class="game-main">
+            <div class="game-board" id="board">
+                <!-- Game items will be inserted here by JavaScript -->
+            </div>
+        </div>
+    </div>
+    <script src="/dist/App.js"></script>
+</body>
+</html> 

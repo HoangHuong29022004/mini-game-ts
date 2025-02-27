@@ -1,50 +1,119 @@
-<!doctype html>
-<html lang="en">
-    <style>
-        body{
-          background-image: url(https://4.bp.blogspot.com/-clfUKsuwBVw/WdX2h9fDt1I/AAAAAAAAAOU/ruFgE0zvv8oH54HRHVvMqloUK0ao5Ip5wCLcBGAs/s1600/game-pikachu-c%25E1%25BB%2595-%25C4%2591i%25E1%25BB%2583n.png);
-          .nut{
-            text-align: center;
-          }
-        }
-        
-        
-      </style>
-    
-
+<!DOCTYPE html>
+<html lang="vi">
 <head>
-    <%- include('partials/head.ejs') %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Memory Game - Đăng Nhập</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .login-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 400px;
+            padding: 30px;
+            text-align: center;
+        }
+        .game-logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            background: url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png') center/contain no-repeat;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .game-title {
+            color: #4f46e5;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .game-subtitle {
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+        }
+        .form-control {
+            background: #f3f4f6;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 12px 20px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        .form-control:focus {
+            background: white;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+        }
+        .btn-start {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            width: 100%;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        .btn-start:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
+        }
+        .error-message {
+            color: #ef4444;
+            font-size: 0.85rem;
+            margin-top: 8px;
+            display: none;
+        }
+        .error-message.show {
+            display: block;
+            animation: shake 0.5s ease-in-out;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+    </style>
 </head>
-
 <body>
-    <main class="container">
-        <header class="row">
-            <%- include('partials/header.ejs') %>
-        </header>
-        <section class="row" id="app">
-            <div class="col-6 offset-3 mt-3">
-                <form action="board">
-                    <div class="form-group">
-                        <label for="username">Tên Người Chơi</label>
-                        <input type="text" class="form-control" name="username" id="username"
-                            aria-describedby="UsernameHelpId" placeholder="Tên Người Chơi">
-                        <small id="UsernameHelpId" class="form-text text-muted invisible">⚠ Tên người dùng không được
-                            trống hoặc ít nhất 3 ký tự</small>
-                    </div>
-                    <div class="form-group">
-                        <hr>
-                        <button type="button" id="play" class="btn btn-primary">Chơi Ngay</button>
-                    </div>
-                </form>
+    <div class="login-container">
+        <div class="game-logo"></div>
+        <h1 class="game-title">Pokemon Memory Game</h1>
+        <p class="game-subtitle">Hãy nhập tên của bạn để bắt đầu chơi!</p>
+        
+        <form class="mt-4">
+            <div class="form-group">
+                <input type="text" 
+                       class="form-control" 
+                       id="username"
+                       placeholder="Nhập tên của bạn"
+                       autocomplete="off">
+                <div id="usernameHelp" class="error-message">
+                    Tên người chơi phải có ít nhất 2 ký tự và không chứa ký tự đặc biệt
+                </div>
             </div>
-        </section>
-        <footer class="row">
-            <%- include('partials/footer.ejs') %>
-        </footer>
-    </main>
-    <script type="module" src="assets/user.bundle.js"></script>
-    <script type="module" src="assets/vendors~user.chunk.js"></script>
-    <%- include('partials/foot.ejs') %>
+            <button type="button" class="btn btn-start" id="startGame">
+                Bắt Đầu Chơi
+            </button>
+        </form>
+    </div>
+    
+    <%- include('partials/foot') %>
 </body>
-
 </html>

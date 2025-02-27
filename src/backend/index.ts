@@ -1,22 +1,30 @@
-import express from 'express';
-import path from 'path';
+import express from "express";
+import path from "path";
+import { Request, Response } from 'express';
 
 const app = express();
-const port = 3000;
 
-// Serve static files from the frontend dist directory
-app.use(express.static(path.join(__dirname, '../frontend')));
+app.set("view engine", "ejs");
+app.set("views", "templates");
 
-// Route for the login page
-app.get('/Login', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/index.html'));
+// Serve static files
+app.use('/assets', express.static(path.join("dist/frontend")));
+app.use("/", express.static(path.join("public")));
+
+// Routes
+app.get("/board", (req: Request, res: Response) => {
+    res.render('index', { isLoginPage: false });
+});
+
+app.get("/login", (req: Request, res: Response) => {
+    res.render('login', { isLoginPage: true });
 });
 
 // Default route redirects to login
-app.get('/', (req, res) => {
-    res.redirect('/Login');
+app.get("/", (req: Request, res: Response) => {
+    res.redirect('/login');
 });
 
-app.listen(port, () => {
-    console.log(`Server đang chạy tại Port : http://localhost:${port}/Login`);
+app.listen(3000, () => {
+    console.log('Server đang chạy tại Port : http://localhost:3000/login');
 });
